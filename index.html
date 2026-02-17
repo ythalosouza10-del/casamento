@@ -9,8 +9,6 @@ body{margin:0;font-family:'Georgia',serif;background:#0b1d3a;color:white;text-al
 nav{position:fixed;top:0;width:100%;background:#061022;padding:15px;z-index:10}
 nav a{color:#d4af37;margin:0 20px;text-decoration:none;font-size:18px}
 
-html{scroll-behavior:smooth;}
-
 .hero{height:100vh;background:url('foto1.jpg') center/cover no-repeat;display:flex;flex-direction:column;justify-content:center;align-items:center;text-shadow:2px 2px 10px black}
 .hero h1{font-size:70px;margin:0;color:#d4af37}
 .timer{margin-top:20px;font-size:28px;background:#00000080;padding:10px 20px;border-radius:10px}
@@ -18,50 +16,49 @@ html{scroll-behavior:smooth;}
 section{padding:90px 20px}
 
 /* FOTO 2 TELA TODA */
-.foto-cheia{
+section img{
 width:100vw;
 height:100vh;
 object-fit:cover;
 border-radius:0;
 margin:0;
-display:block;
 }
 
-/* CONFIRMAR PRESENÇA BONITO */
-#confirmar input{
-padding:12px;
-font-size:16px;
-width:260px;
-border-radius:10px;
-border:none;
-margin-top:10px;
-text-align:center;
-}
-
-#confirmar button{
-padding:14px 30px;
-background:linear-gradient(45deg,#d4af37,#f7d774);
-color:#061022;
+/* BOTÃO BONITO */
+button{
+padding:12px 30px;
+background:#d4af37;
+color:#0b1d3a;
 border:none;
 border-radius:12px;
 font-size:18px;
-margin-top:15px;
+margin-top:10px;
 cursor:pointer;
-box-shadow:0 0 15px #d4af37aa;
-transition:0.3s;
 }
+button:hover{background:#f0d060}
 
-#confirmar button:hover{
-transform:scale(1.05);
-box-shadow:0 0 25px #d4af37;
+/* LINHA DE LIRIOS */
+.divisor-lirio{
+width:100%;
+height:70px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:30px;
+background:#0b1d3a;
+}
+.divisor-lirio::after{
+content:"🤍 🤍 🤍 🤍 🤍 🤍 🤍 🤍 🤍 🤍";
+letter-spacing:15px;
 }
 
 .lirio{position:fixed;top:-40px;font-size:24px;animation:fall linear infinite}
 @keyframes fall{to{transform:translateY(110vh) rotate(360deg)}}
+
+html{scroll-behavior:smooth;}
 </style>
 
 <script>
-// CONTAGEM
 function contagem(){
 var data=new Date("Aug 09, 2027 18:00:00").getTime();
 var agora=new Date().getTime();
@@ -71,10 +68,10 @@ var h=Math.floor((t%(1000*60*60*24))/(1000*60*60));
 var m=Math.floor((t%(1000*60*60))/(1000*60));
 var s=Math.floor((t%(1000*60))/1000);
 if(t<0){document.getElementById('timer').innerHTML='Chegou o grande dia 💍';return}
-document.getElementById('timer').innerHTML=d+' dias '+h+'h '+m+'m '+s+'s';}
+document.getElementById('timer').innerHTML=d+' dias '+h+'h '+m+'m '+s+'s';
+}
 setInterval(contagem,1000);
 
-// WHATS
 function confirmar(){
 var nome=document.getElementById('nome').value;
 if(nome==''){alert('Digite seu nome');return}
@@ -83,7 +80,6 @@ var msg='Olá, eu '+nome+' confirmo presença no casamento do Ythalo & Júlia �
 window.open('https://wa.me/'+numero+'?text='+encodeURIComponent(msg));
 }
 
-// LIRIOS
 function lirios(){
 for(let i=0;i<30;i++){
 let l=document.createElement('div');
@@ -99,10 +95,6 @@ window.onload=lirios;
 
 <body>
 
-<audio autoplay loop hidden>
-<source src="musica.mp3" type="audio/mpeg">
-</audio>
-
 <nav>
 <a href="#">Início</a>
 <a href="#confirmar">Confirmar</a>
@@ -115,30 +107,35 @@ window.onload=lirios;
 <div id="timer" class="timer"></div>
 </section>
 
+<div class="divisor-lirio"></div>
+
 <section>
 <h2 style="color:#d4af37">Nossa História</h2>
 <p>Nosso amor nos trouxe até aqui e queremos celebrar esse momento com você.</p>
+<img src="foto2.jpg">
 </section>
 
-<!-- FOTO TELA TODA -->
-<img src="foto2.jpg" class="foto-cheia">
+<div class="divisor-lirio"></div>
 
 <section id="confirmar">
 <h2 style="color:#d4af37">Confirmar Presença 💍</h2>
 <p>Digite seu nome e confirme pelo WhatsApp</p>
-
 <input type="text" id="nome" placeholder="Seu nome">
 <br>
 <button onclick="confirmar()">Confirmar Presença</button>
 </section>
 
+<div class="divisor-lirio"></div>
+
 <section id="mapa" style="background:#061022">
 <h2 style="color:#d4af37">Local</h2>
-<iframe src="https://www.google.com/maps?q=Mosteiro+de+São+Bento+São+Paulo&output=embed" width="90%" height="350" style="border:0;border-radius:20px"></iframe>
+<iframe src="https://www.google.com/maps?q=Mosteiro+de+São+Bento+São+Paulo&output=embed"
+width="90%" height="350" style="border:0;border-radius:20px"></iframe>
 </section>
 
 </body>
 </html>
+
 
 
 
