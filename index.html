@@ -7,37 +7,83 @@
 <style>
 body{
 margin:0;
-font-family:Arial;
+font-family:'Segoe UI',sans-serif;
+scroll-behavior:smooth;
+}
+
+/* MENU */
+nav{
+position:fixed;
+top:0;
+width:100%;
+background:#0b1d3a;
+padding:15px;
 text-align:center;
-background:#ffffff;
-overflow-x:hidden;
+z-index:10;
 }
-
-section{
-padding:80px 20px;
-}
-
-.hero{
-background:linear-gradient(#fff0f5,#ffffff);
-}
-
-h1{color:#c2185b;font-size:45px;}
-h2{color:#444;margin-bottom:20px;}
-
-img{
-width:90%;
-max-width:500px;
-border-radius:20px;
-margin-top:20px;
-}
-
-button{
-padding:12px 25px;
-font-size:18px;
-background:#c2185b;
+nav a{
 color:white;
-border:none;
-border-radius:10px;
+margin:0 20px;
+text-decoration:none;
+font-size:18px;
+}
+
+/* HERO FOTO TELA CHEIA */
+.hero{
+height:100vh;
+background:url("foto1.jpg") center/cover no-repeat;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+color:white;
+text-shadow:2px 2px 10px black;
+}
+
+.hero h1{
+font-size:70px;
+margin:0;
+}
+
+.hero p{
+font-size:22px;
+}
+
+/* TEXTO */
+.texto{
+padding:80px 20px;
+text-align:center;
+background:white;
+}
+
+/* CONVITE */
+.convite{
+background:#0b1d3a;
+color:white;
+padding:80px 20px;
+text-align:center;
+}
+
+.card{
+background:white;
+color:#0b1d3a;
+padding:30px;
+max-width:400px;
+margin:auto;
+border-radius:20px;
+cursor:pointer;
+transition:.6s;
+transform-style:preserve-3d;
+}
+
+.card.aberto{
+transform:rotateY(180deg);
+}
+
+/* CONFIRMAR */
+.confirmar{
+padding:80px 20px;
+text-align:center;
 }
 
 input{
@@ -46,92 +92,81 @@ font-size:16px;
 width:250px;
 }
 
-/* PETALAS */
-.petal{
-position:fixed;
-top:-50px;
-font-size:25px;
-animation:fall linear infinite;
-z-index:1;
+button{
+padding:12px 25px;
+background:#0b1d3a;
+color:white;
+border:none;
+border-radius:10px;
+font-size:18px;
 }
-@keyframes fall{
-to{transform:translateY(110vh) rotate(360deg);}
+
+/* MAPA */
+.mapa{
+padding:80px 20px;
+background:#eee;
+text-align:center;
 }
 </style>
 
 <script>
+function abrir(){
+document.getElementById("card").innerHTML=
+"<h2>Você está convidado 💍</h2><p>Esperamos você no nosso grande dia!</p><p>12 Outubro 2026 - São Paulo</p>";
+}
+
 function confirmar(){
 var nome=document.getElementById("nome").value;
-
-if(nome==""){
-alert("Digite seu nome ❤️");
-return;
-}
-
+if(nome==""){alert("Digite seu nome");return;}
 var numero="5511978067352";
 var msg="Olá, eu "+nome+" confirmo presença no casamento do Ythalo & Júlia 💍";
-
 window.open("https://wa.me/"+numero+"?text="+encodeURIComponent(msg));
 }
-
-function criarPetalas(){
-for(let i=0;i<25;i++){
-let p=document.createElement("div");
-p.className="petal";
-p.innerHTML="🌸";
-p.style.left=Math.random()*100+"vw";
-p.style.animationDuration=(6+Math.random()*6)+"s";
-document.body.appendChild(p);
-}
-}
-window.onload=criarPetalas;
 </script>
 </head>
 
 <body>
 
-<!-- CAPA -->
+<nav>
+<a href="#">Início</a>
+<a href="#convite">Convite</a>
+<a href="#confirmar">Confirmar</a>
+<a href="#mapa">Local</a>
+</nav>
+
 <section class="hero">
-<h1>💍 Ythalo & Júlia 💍</h1>
-<p>Com muita alegria convidamos você para celebrar nosso casamento</p>
-<img src="foto1.jpg">
+<h1>Ythalo & Júlia</h1>
+<p>Com alegria convidamos você para nosso casamento</p>
 </section>
 
-<!-- HISTORIA -->
-<section>
+<section class="texto">
 <h2>Nossa História ❤️</h2>
-<p>Nos conhecemos de uma forma especial e desde então caminhamos juntos com amor, respeito e sonhos.
-Agora queremos celebrar esse momento com você.</p>
-<img src="foto2.jpg">
+<p>Deus uniu nossos caminhos e agora queremos celebrar esse momento especial com você.</p>
+<img src="foto2.jpg" style="width:300px;border-radius:20px;margin-top:20px;">
 </section>
 
-<!-- EVENTO -->
-<section style="background:#fff0f5;">
-<h2>O Grande Dia 💒</h2>
-<p>📅 12 de Outubro de 2026</p>
-<p>📍 Mosteiro de São Bento - São Paulo</p>
-
-<iframe
-src="https://www.google.com/maps?q=Mosteiro+de+São+Bento+São+Paulo&output=embed"
-width="90%" height="300"
-style="border-radius:20px;border:0;">
-</iframe>
+<section class="convite" id="convite">
+<h2>Nosso Convite</h2>
+<div class="card" id="card" onclick="abrir()">
+Clique para abrir 💌
+</div>
 </section>
 
-<!-- CONFIRMAR -->
-<section>
-<h2>Confirme sua presença ❤️</h2>
-<input type="text" id="nome" placeholder="Digite seu nome">
+<section class="confirmar" id="confirmar">
+<h2>Confirme sua presença</h2>
+<input id="nome" placeholder="Digite seu nome">
 <br><br>
-<button onclick="confirmar()">Confirmar presença</button>
+<button onclick="confirmar()">Confirmar no WhatsApp</button>
 </section>
 
-<!-- FINAL -->
-<section style="background:#fff0f5;">
-<h2>Esperamos você 💕</h2>
-<p>Com carinho,<br>Ythalo & Júlia</p>
+<section class="mapa" id="mapa">
+<h2>Local do Evento</h2>
+<iframe src="https://www.google.com/maps?q=Mosteiro+de+São+Bento+São+Paulo&output=embed"
+width="90%" height="350" style="border:0;border-radius:20px;"></iframe>
 </section>
 
 </body>
 </html>
+
+
 
