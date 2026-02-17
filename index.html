@@ -9,89 +9,35 @@
 body{
 margin:0;
 font-family:Arial;
-background:#0b1c3a;
-color:white;
 text-align:center;
+background:#0b2240;
+color:white;
 overflow-x:hidden;
 }
 
 nav{
-position:fixed;
-top:0;
-width:100%;
-background:#06142b;
+background:#081a33;
 padding:15px;
-z-index:1000;
+position:sticky;
+top:0;
 }
 
 nav a{
 color:#d4af37;
-margin:0 20px;
+margin:15px;
 text-decoration:none;
 font-weight:bold;
 }
 
-section{
-padding:120px 20px;
-}
+section{padding:80px 20px;}
 
-h1{font-size:50px;color:#d4af37;}
-h2{color:#d4af37;}
-
-.hero{
-background:url("foto1.jpg") center/cover no-repeat;
-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-shadow:0 0 20px black;
-}
-
-.envelope{
-width:220px;
-height:150px;
-margin:40px auto;
-position:relative;
-cursor:pointer;
-}
-
-.tampa{
-background:#d4af37;
-width:100%;
-height:75px;
-position:absolute;
-top:0;
-transform-origin:top;
-transition:1s;
-}
-
-.papel{
-background:white;
-color:black;
-width:200px;
-padding:20px;
-position:absolute;
-bottom:0;
-left:10px;
-transform:translateY(80px);
-transition:1s;
-border-radius:10px;
-}
-
-.envelope.abrir .tampa{
-transform:rotateX(180deg);
-}
-
-.envelope.abrir .papel{
-transform:translateY(-20px);
-}
+h1,h2{color:#d4af37}
 
 button{
 padding:12px 25px;
 background:#d4af37;
 border:none;
-border-radius:10px;
+border-radius:8px;
 font-size:16px;
 }
 
@@ -100,49 +46,156 @@ padding:10px;
 width:250px;
 }
 
+/* ====== LIRIOS ====== */
 .petal{
 position:fixed;
-top:-50px;
-font-size:22px;
+top:-40px;
+font-size:20px;
 animation:fall linear infinite;
+z-index:1;
 }
 @keyframes fall{
-to{transform:translateY(110vh) rotate(360deg);}
+to{transform:translateY(110vh);}
 }
 
+/* ====== ENVELOPE ====== */
+.envelope{
+width:260px;
+height:180px;
+margin:40px auto;
+position:relative;
+cursor:pointer;
+perspective:1000px;
+}
+
+.env-body{
+position:absolute;
+width:100%;
+height:100%;
+background:#d4af37;
+border-radius:8px;
+}
+
+.env-top{
+position:absolute;
+width:100%;
+height:100%;
+background:#c49b2e;
+clip-path:polygon(0 0,100% 0,50% 60%);
+transform-origin:top;
+transition:1s;
+z-index:2;
+}
+
+.paper{
+position:absolute;
+width:220px;
+background:white;
+color:black;
+padding:20px;
+left:20px;
+bottom:-140px;
+border-radius:10px;
+transition:1s;
+z-index:1;
+}
+
+.envelope.open .env-top{
+transform:rotateX(180deg);
+}
+
+.envelope.open .paper{
+bottom:60px;
+}
+
+/* ====== CONTAGEM ====== */
 #contador{
-font-size:28px;
+font-size:30px;
 margin-top:20px;
 color:#fff;
 }
 
 </style>
+
+<script>
+
+function criarPetalas(){
+for(let i=0;i<25;i++){
+let p=document.createElement("div");
+p.className="petal";
+p.innerHTML="🤍";
+p.style.left=Math.random()*100+"vw";
+p.style.animationDuration=(6+Math.random()*6)+"s";
+document.body.appendChild(p);
+}
+}
+
+function abrirEnvelope(el){
+el.classList.toggle("open");
+document.getElementById("musica").play();
+}
+
+/* CONTAGEM */
+function contagem(){
+let data=new Date("Aug 09 2027 18:00:00").getTime();
+setInterval(()=>{
+let agora=new Date().getTime();
+let diff=data-agora;
+
+let d=Math.floor(diff/(1000*60*60*24));
+let h=Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+let m=Math.floor((diff%(1000*60*60))/(1000*60));
+let s=Math.floor((diff%(1000*60))/1000);
+
+document.getElementById("contador").innerHTML=
+d+" dias "+h+"h "+m+"m "+s+"s";
+},1000);
+}
+
+/* WHATSAPP */
+function confirmar(){
+let nome=document.getElementById("nome").value;
+if(nome==""){alert("Digite seu nome ❤️");return;}
+let msg="Olá, eu "+nome+" confirmo presença no casamento do Ythalo & Júlia 💍";
+window.open("https://wa.me/5511978067352?text="+encodeURIComponent(msg));
+}
+
+window.onload=function(){
+criarPetalas();
+contagem();
+}
+
+</script>
 </head>
 
 <body>
 
+<audio id="musica" loop>
+<source src="musica.mpeg" type="audio/mpeg">
+</audio>
+
 <nav>
-<a href="#inicio">Início</a>
+<a href="#">Início</a>
 <a href="#convite">Convite</a>
 <a href="#confirmar">Confirmar</a>
 <a href="#local">Local</a>
 </nav>
 
-<!-- HERO -->
-<section id="inicio" class="hero">
+<section>
 <h1>💍 Ythalo & Júlia 💍</h1>
-<p>09 Agosto 2027 – 18h</p>
+<p>Estamos contando os dias para viver esse momento com você ❤️</p>
 <div id="contador"></div>
 </section>
 
 <!-- CONVITE -->
 <section id="convite">
-
 <h2>Convite Especial 💌</h2>
 
-<div id="env" class="envelope" onclick="abrirEnvelope()">
-<div class="tampa"></div>
-<div class="papel">
+<div class="envelope" onclick="abrirEnvelope(this)">
+<div class="env-body"></div>
+<div class="env-top"></div>
+
+<div class="paper">
 <h3>Você está convidado 💍</h3>
 <p>
 Com alegria esperamos você<br>
@@ -157,72 +210,17 @@ no nosso casamento ❤️<br><br>
 <!-- CONFIRMAR -->
 <section id="confirmar">
 <h2>Confirme sua presença ❤️</h2>
-<input id="nome" placeholder="Digite seu nome">
-<br><br>
+<input id="nome" placeholder="Digite seu nome"><br><br>
 <button onclick="confirmar()">Confirmar no WhatsApp</button>
 </section>
 
-<!-- LOCAL -->
+<!-- MAPA -->
 <section id="local">
 <h2>Local 💒</h2>
-
 <iframe
 src="https://www.google.com/maps?q=Mosteiro+de+São+Bento+São+Paulo&output=embed"
 width="90%" height="300"
-style="border-radius:20px;border:0;">
-</iframe>
-
-</section>
-
-<!-- MUSICA -->
-<audio id="musica" loop>
-<source src="musica.mpeg" type="audio/mpeg">
-</audio>
-
-<script>
-
-function abrirEnvelope(){
-document.getElementById("env").classList.add("abrir");
-document.getElementById("musica").play();
-}
-
-function confirmar(){
-var nome=document.getElementById("nome").value;
-if(nome==""){alert("Digite seu nome ❤️");return;}
-window.open("https://wa.me/5511978067352?text=Olá, eu "+nome+" confirmo presença no casamento 💍");
-}
-
-function criarPetalas(){
-for(let i=0;i<30;i++){
-let p=document.createElement("div");
-p.className="petal";
-p.innerHTML="🌸";
-p.style.left=Math.random()*100+"vw";
-p.style.animationDuration=(6+Math.random()*6)+"s";
-document.body.appendChild(p);
-}
-}
-criarPetalas();
-
-var data=new Date("Aug 09 2027 18:00:00").getTime();
-
-setInterval(()=>{
-var agora=new Date().getTime();
-var dist=data-agora;
-
-var d=Math.floor(dist/(1000*60*60*24));
-var h=Math.floor((dist%(1000*60*60*24))/(1000*60*60));
-var m=Math.floor((dist%(1000*60*60))/(1000*60));
-var s=Math.floor((dist%(1000*60))/1000);
-
-document.getElementById("contador").innerHTML=
-"Faltam "+d+" dias "+h+"h "+m+"m "+s+"s ❤️";
-},1000);
-
-</script>
-
-</body>
-</html>
+style="bord
 
 
 
