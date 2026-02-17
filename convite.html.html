@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Casamento Ythalo & Júlia</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+text-align:center;
+background:#ffffff;
+overflow-x:hidden;
+}
+
+section{
+padding:80px 20px;
+}
+
+.hero{
+background:linear-gradient(#fff0f5,#ffffff);
+}
+
+h1{color:#c2185b;font-size:45px;}
+h2{color:#444;margin-bottom:20px;}
+
+img{
+width:90%;
+max-width:500px;
+border-radius:20px;
+margin-top:20px;
+}
+
+button{
+padding:12px 25px;
+font-size:18px;
+background:#c2185b;
+color:white;
+border:none;
+border-radius:10px;
+}
+
+input{
+padding:10px;
+font-size:16px;
+width:250px;
+}
+
+/* PETALAS */
+.petal{
+position:fixed;
+top:-50px;
+font-size:25px;
+animation:fall linear infinite;
+z-index:1;
+}
+@keyframes fall{
+to{transform:translateY(110vh) rotate(360deg);}
+}
+</style>
+
+<script>
+function confirmar(){
+var nome=document.getElementById("nome").value;
+
+if(nome==""){
+alert("Digite seu nome ❤️");
+return;
+}
+
+var numero="5511978067352";
+var msg="Olá, eu "+nome+" confirmo presença no casamento do Ythalo & Júlia 💍";
+
+window.open("https://wa.me/"+numero+"?text="+encodeURIComponent(msg));
+}
+
+function criarPetalas(){
+for(let i=0;i<25;i++){
+let p=document.createElement("div");
+p.className="petal";
+p.innerHTML="🌸";
+p.style.left=Math.random()*100+"vw";
+p.style.animationDuration=(6+Math.random()*6)+"s";
+document.body.appendChild(p);
+}
+}
+window.onload=criarPetalas;
+</script>
+</head>
+
+<body>
+
+<!-- CAPA -->
+<section class="hero">
+<h1>💍 Ythalo & Júlia 💍</h1>
+<p>Com muita alegria convidamos você para celebrar nosso casamento</p>
+<img src="foto1.jpg">
+</section>
+
+<!-- HISTORIA -->
+<section>
+<h2>Nossa História ❤️</h2>
+<p>Nos conhecemos de uma forma especial e desde então caminhamos juntos com amor, respeito e sonhos.
+Agora queremos celebrar esse momento com você.</p>
+<img src="foto2.jpg">
+</section>
+
+<!-- EVENTO -->
+<section style="background:#fff0f5;">
+<h2>O Grande Dia 💒</h2>
+<p>📅 12 de Outubro de 2026</p>
+<p>📍 Mosteiro de São Bento - São Paulo</p>
+
+<iframe
+src="https://www.google.com/maps?q=Mosteiro+de+São+Bento+São+Paulo&output=embed"
+width="90%" height="300"
+style="border-radius:20px;border:0;">
+</iframe>
+</section>
+
+<!-- CONFIRMAR -->
+<section>
+<h2>Confirme sua presença ❤️</h2>
+<input type="text" id="nome" placeholder="Digite seu nome">
+<br><br>
+<button onclick="confirmar()">Confirmar presença</button>
+</section>
+
+<!-- FINAL -->
+<section style="background:#fff0f5;">
+<h2>Esperamos você 💕</h2>
+<p>Com carinho,<br>Ythalo & Júlia</p>
+</section>
+
+</body>
+</html>
+
