@@ -5,7 +5,6 @@
 <title>Casamento Ythalo & Júlia</title>
 
 <style>
-
 body{
 margin:0;
 font-family:Arial;
@@ -15,7 +14,6 @@ text-align:center;
 overflow-x:hidden;
 }
 
-/* MENU */
 nav{
 position:fixed;
 top:0;
@@ -32,53 +30,65 @@ text-decoration:none;
 font-weight:bold;
 }
 
-/* SEÇÕES */
 section{
-padding:120px 20px;
-border-bottom:2px solid #d4af37;
-position:relative;
+padding:120px 20px 80px;
 }
 
-/* TÍTULOS */
 h1,h2{
-color:#d4af37;
+color:#ffd700;
 }
 
-/* BOTÃO */
-button{
-padding:12px 25px;
-background:#d4af37;
-border:none;
-border-radius:8px;
-font-size:16px;
-cursor:pointer;
-margin-top:15px;
+/* LINHA COM LÍRIOS */
+.divisao{
+position:relative;
+height:60px;
+background:#0b1c3a;
 }
 
-/* INPUT */
-input{
-padding:10px;
-border-radius:8px;
-border:none;
-width:250px;
-margin-top:10px;
-}
-
-/* LÍRIOS DOURADOS */
-.lirio{
+.divisao::before{
+content:"🌸   🌸   🌸   🌸   🌸   🌸";
 position:absolute;
-font-size:24px;
-color:#d4af37;
-animation:flutuar 6s linear infinite;
-opacity:0.5;
+width:100%;
+text-align:center;
+top:15px;
+font-size:26px;
+color:gold;
+animation:brilho 3s infinite alternate;
 }
 
-@keyframes flutuar{
-0%{transform:translateY(0px);}
-50%{transform:translateY(-20px);}
-100%{transform:translateY(0px);}
+@keyframes brilho{
+from{opacity:0.5;}
+to{opacity:1;}
 }
 
+img{
+max-width:300px;
+margin:10px;
+border-radius:20px;
+}
+
+iframe{
+width:90%;
+height:350px;
+border-radius:20px;
+border:none;
+}
+
+footer{
+background:#06142b;
+padding:20px;
+margin-top:40px;
+}
+
+.botao{
+background:#ffd700;
+color:#06142b;
+padding:10px 20px;
+border:none;
+border-radius:10px;
+font-weight:bold;
+cursor:pointer;
+}
 </style>
 </head>
 
@@ -87,61 +97,54 @@ opacity:0.5;
 <nav>
 <a href="#inicio">Início</a>
 <a href="#historia">Nossa História</a>
-<a href="#presenca">Confirmar Presença</a>
+<a href="#confirmar">Confirmar Presença</a>
+<a href="#local">Local</a>
 </nav>
 
-<!-- INICIO -->
 <section id="inicio">
 <h1>Casamento Ythalo & Júlia 💍</h1>
 <p>Estamos muito felizes em compartilhar esse momento com você</p>
-<div class="lirio" style="left:10%">✿</div>
-<div class="lirio" style="left:80%">✿</div>
+
+<img src="foto1.jpg">
+<img src="foto2.jpg">
+<img src="foto3.jpg">
 </section>
 
-<!-- HISTORIA -->
+<div class="divisao"></div>
+
 <section id="historia">
 <h2>Nossa História ❤️</h2>
-<p>
-Tudo começou quando nossos caminhos se cruzaram...  
-E desde então, cada momento juntos se tornou especial.
-</p>
-
-<div class="lirio" style="left:20%">✿</div>
-<div class="lirio" style="left:70%">✿</div>
+<p>Tudo começou quando nossos caminhos se cruzaram... E desde então, cada momento juntos se tornou especial.</p>
 </section>
 
-<!-- CONFIRMAR PRESENÇA -->
-<section id="presenca">
+<div class="divisao"></div>
+
+<section id="confirmar">
 <h2>Confirmar Presença</h2>
-
 <p>Digite seu nome para confirmar:</p>
-
-<input type="text" id="nome" placeholder="Seu nome aqui">
-
-<br>
-
-<button onclick="confirmar()">Confirmar no WhatsApp</button>
-
-<div class="lirio" style="left:40%">✿</div>
-<div class="lirio" style="left:60%">✿</div>
-
+<input id="nome" placeholder="Seu nome" style="padding:10px;border-radius:10px;border:none;">
+<br><br>
+<button class="botao" onclick="enviar()">Confirmar no WhatsApp</button>
 </section>
+
+<div class="divisao"></div>
+
+<section id="local">
+<h2>Local do Casamento</h2>
+<p>Esperamos você nesse lugar especial ❤️</p>
+
+<iframe src="https://www.google.com/maps?q=Mosteiro+de+São+Bento+São+Paulo&output=embed"></iframe>
+</section>
+
+<footer>
+<p>Com amor, Ythalo & Júlia 💖</p>
+</footer>
 
 <script>
-function confirmar(){
-let nome = document.getElementById("nome").value;
-
-if(nome === ""){
-alert("Digite seu nome 😊");
-return;
-}
-
-let numero = "5511978067352";
-let mensagem = `Olá, eu ${nome}, confirmo presença no casamento ❤️`;
-
-let link = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
-
-window.open(link, "_blank");
+function enviar(){
+var nome=document.getElementById("nome").value;
+var msg="Olá, eu "+nome+" confirmo presença no casamento ❤️";
+window.open("https://wa.me/5511978067352?text="+encodeURIComponent(msg));
 }
 </script>
 
