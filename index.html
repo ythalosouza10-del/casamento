@@ -5,142 +5,221 @@
 <title>Casamento Ythalo & Júlia</title>
 
 <style>
-body{margin:0;font-family:'Georgia',serif;background:#0b1d3a;color:white;text-align:center;overflow-x:hidden}
-nav{position:fixed;top:0;width:100%;background:#061022;padding:15px;z-index:10}
-nav a{color:#d4af37;margin:0 20px;text-decoration:none;font-size:18px}
 
-.hero{height:100vh;background:url('foto1.jpg') center/cover no-repeat;display:flex;flex-direction:column;justify-content:center;align-items:center;text-shadow:2px 2px 10px black}
-.hero h1{font-size:70px;margin:0;color:#d4af37}
-.timer{margin-top:20px;font-size:28px;background:#00000080;padding:10px 20px;border-radius:10px}
+body{
+margin:0;
+font-family:Arial;
+background:#0b1c3a;
+color:white;
+text-align:center;
+overflow-x:hidden;
+}
 
-section{padding:90px 20px}
+nav{
+position:fixed;
+top:0;
+width:100%;
+background:#06142b;
+padding:15px;
+z-index:1000;
+}
 
-/* CONVITE 3D */
-.convite-area{perspective:1200px}
-.card{width:320px;height:200px;margin:auto;background:#d4af37;color:#0b1d3a;border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer;transition:1s;transform-style:preserve-3d}
-.card.aberto{transform:rotateY(180deg)}
-.card .frente,.card .verso{position:absolute;backface-visibility:hidden;padding:20px}
-.card .verso{transform:rotateY(180deg)}
+nav a{
+color:#d4af37;
+margin:0 20px;
+text-decoration:none;
+font-weight:bold;
+}
 
-input{padding:10px;font-size:16px;width:250px}
-button{padding:12px 25px;background:#d4af37;color:#0b1d3a;border:none;border-radius:10px;font-size:18px;margin-top:10px}
+section{
+padding:120px 20px;
+}
 
-.lirio{position:fixed;top:-40px;font-size:24px;animation:fall linear infinite}
-@keyframes fall{to{transform:translateY(110vh) rotate(360deg)}}
+h1{font-size:50px;color:#d4af37;}
+h2{color:#d4af37;}
+
+.hero{
+background:url("foto1.jpg") center/cover no-repeat;
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-shadow:0 0 20px black;
+}
+
+.envelope{
+width:220px;
+height:150px;
+margin:40px auto;
+position:relative;
+cursor:pointer;
+}
+
+.tampa{
+background:#d4af37;
+width:100%;
+height:75px;
+position:absolute;
+top:0;
+transform-origin:top;
+transition:1s;
+}
+
+.papel{
+background:white;
+color:black;
+width:200px;
+padding:20px;
+position:absolute;
+bottom:0;
+left:10px;
+transform:translateY(80px);
+transition:1s;
+border-radius:10px;
+}
+
+.envelope.abrir .tampa{
+transform:rotateX(180deg);
+}
+
+.envelope.abrir .papel{
+transform:translateY(-20px);
+}
+
+button{
+padding:12px 25px;
+background:#d4af37;
+border:none;
+border-radius:10px;
+font-size:16px;
+}
+
+input{
+padding:10px;
+width:250px;
+}
+
+.petal{
+position:fixed;
+top:-50px;
+font-size:22px;
+animation:fall linear infinite;
+}
+@keyframes fall{
+to{transform:translateY(110vh) rotate(360deg);}
+}
+
+#contador{
+font-size:28px;
+margin-top:20px;
+color:#fff;
+}
+
 </style>
-
-<script>
-// CONTAGEM
-function contagem(){
-var data=new Date("Aug 09, 2027 18:00:00").getTime();
-var agora=new Date().getTime();
-var t=data-agora;
-var d=Math.floor(t/(1000*60*60*24));
-var h=Math.floor((t%(1000*60*60*24))/(1000*60*60));
-var m=Math.floor((t%(1000*60*60))/(1000*60));
-var s=Math.floor((t%(1000*60))/1000);
-if(t<0){document.getElementById('timer').innerHTML='Chegou o grande dia 💍';return}
-document.getElementById('timer').innerHTML=d+' dias '+h+'h '+m+'m '+s+'s';}
-setInterval(contagem,1000);
-
-// CONVITE 3D
-function abrir(){document.getElementById('card').classList.toggle('aberto')}
-
-// WHATS
-function confirmar(){
-var nome=document.getElementById('nome').value;
-if(nome==''){alert('Digite seu nome');return}
-var numero='5511978067352';
-var msg='Olá, eu '+nome+' confirmo presença no casamento do Ythalo & Júlia 💍';
-window.open('https://wa.me/'+numero+'?text='+encodeURIComponent(msg));}
-
-// LIRIOS
-function lirios(){for(let i=0;i<30;i++){let l=document.createElement('div');l.className='lirio';l.innerHTML='🤍';l.style.left=Math.random()*100+'vw';l.style.animationDuration=(8+Math.random()*6)+'s';document.body.appendChild(l)}}
-window.onload=lirios;
-</script>
 </head>
 
 <body>
 
-<audio autoplay loop hidden>
-<source src="musica.mp3" type="audio/mpeg">
-</audio>
-
 <nav>
-<a href="#">Início</a>
+<a href="#inicio">Início</a>
 <a href="#convite">Convite</a>
 <a href="#confirmar">Confirmar</a>
-<a href="#mapa">Local</a>
+<a href="#local">Local</a>
 </nav>
 
-<section class="hero">
-<h1>Ythalo & Júlia</h1>
-<p>Esperamos você no nosso casamento</p>
-<div id="timer" class="timer"></div>
+<!-- HERO -->
+<section id="inicio" class="hero">
+<h1>💍 Ythalo & Júlia 💍</h1>
+<p>09 Agosto 2027 – 18h</p>
+<div id="contador"></div>
 </section>
 
-<section>
-<h2 style="color:#d4af37">Nossa História</h2>
-<p>Nosso amor nos trouxe até aqui e queremos celebrar esse momento com você.</p>
-<img src="foto2.jpg" style="width:300px;border-radius:20px;margin-top:20px">
-</section>
+<!-- CONVITE -->
+<section id="convite">
 
-<section id="convite" class="convite-area">
-<h2 style="color:#d4af37">Convite Especial</h2>
-<div class="card" id="card" onclick="abrir()">
-<div class="frente">Clique para abrir 💌</div>
-<div class="verso">Você está convidado para nosso casamento dia 09/08/2027 às 18h 💍</div>
+<h2>Convite Especial 💌</h2>
+
+<div id="env" class="envelope" onclick="abrirEnvelope()">
+<div class="tampa"></div>
+<div class="papel">
+<h3>Você está convidado 💍</h3>
+<p>
+Com alegria esperamos você<br>
+no nosso casamento ❤️<br><br>
+09 Agosto 2027 – 18h
+</p>
 </div>
+</div>
+
 </section>
 
+<!-- CONFIRMAR -->
 <section id="confirmar">
-<h2 style="color:#d4af37">Confirme sua presença</h2>
-<input id="nome" placeholder="Digite seu nome"><br>
+<h2>Confirme sua presença ❤️</h2>
+<input id="nome" placeholder="Digite seu nome">
+<br><br>
 <button onclick="confirmar()">Confirmar no WhatsApp</button>
 </section>
 
-<section id="mapa" style="background:#061022">
-<h2 style="color:#d4af37">Local</h2>
-<iframe src="https://www.google.com/maps?q=Mosteiro+de+São+Bento+São+Paulo&output=embed" width="90%" height="350" style="border:0;border-radius:20px"></iframe>
+<!-- LOCAL -->
+<section id="local">
+<h2>Local 💒</h2>
+
+<iframe
+src="https://www.google.com/maps?q=Mosteiro+de+São+Bento+São+Paulo&output=embed"
+width="90%" height="300"
+style="border-radius:20px;border:0;">
+</iframe>
+
 </section>
 
-<!-- ENVELOPE ANIMADO -->
-<style>
-.envelope-area{margin-top:40px;perspective:1000px}
-.envelope{width:260px;height:160px;background:#d4af37;margin:auto;position:relative;border-radius:10px;cursor:pointer;transition:1s}
-.envelope:before{content:'';position:absolute;width:0;height:0;border-left:130px solid transparent;border-right:130px solid transparent;border-bottom:80px solid #caa52f;top:-80px;left:0;transition:1s;transform-origin:bottom}
-.envelope.aberto:before{transform:rotateX(180deg)}
-.carta{opacity:0;transition:1s;color:#0b1d3a;font-weight:bold;padding-top:50px}
-.envelope.aberto .carta{opacity:1}
-</style>
+<!-- MUSICA -->
+<audio id="musica" loop>
+<source src="musica.mpeg" type="audio/mpeg">
+</audio>
 
 <script>
-function abrirEnvelope(){document.getElementById('envelope').classList.toggle('aberto')}
+
+function abrirEnvelope(){
+document.getElementById("env").classList.add("abrir");
+document.getElementById("musica").play();
+}
+
+function confirmar(){
+var nome=document.getElementById("nome").value;
+if(nome==""){alert("Digite seu nome ❤️");return;}
+window.open("https://wa.me/5511978067352?text=Olá, eu "+nome+" confirmo presença no casamento 💍");
+}
+
+function criarPetalas(){
+for(let i=0;i<30;i++){
+let p=document.createElement("div");
+p.className="petal";
+p.innerHTML="🌸";
+p.style.left=Math.random()*100+"vw";
+p.style.animationDuration=(6+Math.random()*6)+"s";
+document.body.appendChild(p);
+}
+}
+criarPetalas();
+
+var data=new Date("Aug 09 2027 18:00:00").getTime();
+
+setInterval(()=>{
+var agora=new Date().getTime();
+var dist=data-agora;
+
+var d=Math.floor(dist/(1000*60*60*24));
+var h=Math.floor((dist%(1000*60*60*24))/(1000*60*60));
+var m=Math.floor((dist%(1000*60*60))/(1000*60));
+var s=Math.floor((dist%(1000*60))/1000);
+
+document.getElementById("contador").innerHTML=
+"Faltam "+d+" dias "+h+"h "+m+"m "+s+"s ❤️";
+},1000);
+
 </script>
-
-<section class="envelope-area">
-<h2 style="color:#d4af37">Abra o Envelope 💌</h2>
-<div class="envelope" id="envelope" onclick="abrirEnvelope()">
-<div class="carta" id="papel">Você está convidado para celebrar nosso amor 💍<br>09/08/2027 às 18h</div>
-</div>
-</section>
-
-<style>
-.envelope{overflow:hidden}
-.carta{
-position:absolute;
-left:10px;
-right:10px;
-bottom:-140px;
-background:white;
-border-radius:10px;
-padding:15px;
-transition:1s;
-}
-.envelope.aberto .carta{
-bottom:20px;
-}
-</style>
 
 </body>
 </html>
