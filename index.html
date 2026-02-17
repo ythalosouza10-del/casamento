@@ -8,7 +8,8 @@
 body{
 margin:0;
 font-family:'Segoe UI',sans-serif;
-scroll-behavior:smooth;
+text-align:center;
+overflow-x:hidden;
 }
 
 /* MENU */
@@ -18,7 +19,6 @@ top:0;
 width:100%;
 background:#0b1d3a;
 padding:15px;
-text-align:center;
 z-index:10;
 }
 nav a{
@@ -28,62 +28,34 @@ text-decoration:none;
 font-size:18px;
 }
 
-/* HERO FOTO TELA CHEIA */
+/* HERO */
 .hero{
 height:100vh;
 background:url("foto1.jpg") center/cover no-repeat;
 display:flex;
+flex-direction:column;
 align-items:center;
 justify-content:center;
-flex-direction:column;
 color:white;
 text-shadow:2px 2px 10px black;
 }
+.hero h1{font-size:65px;margin:0;}
+.hero p{font-size:22px;}
 
-.hero h1{
-font-size:70px;
-margin:0;
+.timer{
+margin-top:20px;
+font-size:28px;
+background:#00000070;
+padding:10px 20px;
+border-radius:10px;
 }
 
-.hero p{
-font-size:22px;
-}
+/* SECTIONS */
+section{padding:80px 20px;}
 
-/* TEXTO */
-.texto{
-padding:80px 20px;
-text-align:center;
-background:white;
-}
-
-/* CONVITE */
 .convite{
 background:#0b1d3a;
 color:white;
-padding:80px 20px;
-text-align:center;
-}
-
-.card{
-background:white;
-color:#0b1d3a;
-padding:30px;
-max-width:400px;
-margin:auto;
-border-radius:20px;
-cursor:pointer;
-transition:.6s;
-transform-style:preserve-3d;
-}
-
-.card.aberto{
-transform:rotateY(180deg);
-}
-
-/* CONFIRMAR */
-.confirmar{
-padding:80px 20px;
-text-align:center;
 }
 
 input{
@@ -94,38 +66,81 @@ width:250px;
 
 button{
 padding:12px 25px;
+font-size:18px;
 background:#0b1d3a;
 color:white;
 border:none;
 border-radius:10px;
-font-size:18px;
+cursor:pointer;
 }
 
-/* MAPA */
-.mapa{
-padding:80px 20px;
-background:#eee;
-text-align:center;
+/* LIRIOS */
+.lirio{
+position:fixed;
+top:-50px;
+font-size:26px;
+animation:fall linear infinite;
+z-index:1;
+}
+@keyframes fall{
+to{transform:translateY(110vh) rotate(360deg);}
 }
 </style>
 
 <script>
-function abrir(){
-document.getElementById("card").innerHTML=
-"<h2>Você está convidado 💍</h2><p>Esperamos você no nosso grande dia!</p><p>12 Outubro 2026 - São Paulo</p>";
+
+// CONTAGEM
+function contagem(){
+var dataCasamento=new Date("Aug 09, 2027 18:00:00").getTime();
+var agora=new Date().getTime();
+var tempo=dataCasamento-agora;
+
+var dias=Math.floor(tempo/(1000*60*60*24));
+var horas=Math.floor((tempo%(1000*60*60*24))/(1000*60*60));
+var minutos=Math.floor((tempo%(1000*60*60))/(1000*60));
+var segundos=Math.floor((tempo%(1000*60))/1000);
+
+if(tempo<0){
+document.getElementById("timer").innerHTML="Chegou o grande dia 💍";
+return;
 }
 
+document.getElementById("timer").innerHTML=
+dias+" dias "+horas+"h "+minutos+"m "+segundos+"s";
+}
+setInterval(contagem,1000);
+
+// WHATS
 function confirmar(){
 var nome=document.getElementById("nome").value;
-if(nome==""){alert("Digite seu nome");return;}
+if(nome==""){alert("Digite seu nome ❤️");return;}
 var numero="5511978067352";
 var msg="Olá, eu "+nome+" confirmo presença no casamento do Ythalo & Júlia 💍";
 window.open("https://wa.me/"+numero+"?text="+encodeURIComponent(msg));
 }
+
+// LIRIOS
+function criarLirios(){
+for(let i=0;i<25;i++){
+let p=document.createElement("div");
+p.className="lirio";
+p.innerHTML="🤍";
+p.style.left=Math.random()*100+"vw";
+p.style.animationDuration=(8+Math.random()*6)+"s";
+document.body.appendChild(p);
+}
+}
+window.onload=criarLirios;
+
 </script>
 </head>
 
 <body>
+
+<!-- MUSICA -->
+<audio autoplay loop hidden>
+<source src="musica.mp3" type="audio/mpeg">
+</audio>
 
 <nav>
 <a href="#">Início</a>
@@ -136,38 +151,34 @@ window.open("https://wa.me/"+numero+"?text="+encodeURIComponent(msg));
 
 <section class="hero">
 <h1>Ythalo & Júlia</h1>
-<p>Com alegria convidamos você para nosso casamento</p>
+<p>Com muita alegria convidamos você para nosso casamento</p>
+<div id="timer" class="timer"></div>
 </section>
 
-<section class="texto">
+<section>
 <h2>Nossa História ❤️</h2>
-<p>Deus uniu nossos caminhos e agora queremos celebrar esse momento especial com você.</p>
+<p>Deus uniu nossos caminhos e queremos celebrar esse momento especial com você.</p>
 <img src="foto2.jpg" style="width:300px;border-radius:20px;margin-top:20px;">
 </section>
 
 <section class="convite" id="convite">
-<h2>Nosso Convite</h2>
-<div class="card" id="card" onclick="abrir()">
-Clique para abrir 💌
-</div>
+<h2>Nosso Convite 💌</h2>
+<p>Esperamos você no nosso grande dia!</p>
+<p>09 de Agosto de 2027 às 18h</p>
 </section>
 
-<section class="confirmar" id="confirmar">
+<section id="confirmar">
 <h2>Confirme sua presença</h2>
-<input id="nome" placeholder="Digite seu nome">
-<br><br>
+<input id="nome" placeholder="Digite seu nome"><br><br>
 <button onclick="confirmar()">Confirmar no WhatsApp</button>
 </section>
 
-<section class="mapa" id="mapa">
+<section id="mapa" style="background:#eee;">
 <h2>Local do Evento</h2>
+<p>Mosteiro de São Bento - São Paulo</p>
 <iframe src="https://www.google.com/maps?q=Mosteiro+de+São+Bento+São+Paulo&output=embed"
 width="90%" height="350" style="border:0;border-radius:20px;"></iframe>
 </section>
-  
-<audio autoplay loop controls>
-  <source src="musica.mp3" type="audio/mpeg">
-</audio>
 
 </body>
 </html>
