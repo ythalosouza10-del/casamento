@@ -5,17 +5,48 @@
 <title>Casamento Ythalo & Júlia</title>
 
 <style>
-body{margin:0;font-family:'Georgia',serif;background:#0b1d3a;color:white;text-align:center;overflow-x:hidden}
-nav{position:fixed;top:0;width:100%;background:#061022;padding:15px;z-index:10}
-nav a{color:#d4af37;margin:0 20px;text-decoration:none;font-size:18px}
+body{
+margin:0;
+font-family:'Georgia',serif;
+background:#ffffff;
+color:#333;
+text-align:center;
+overflow-x:hidden;
+}
 
-.hero{height:100vh;background:url('foto1.jpg') center/cover no-repeat;display:flex;flex-direction:column;justify-content:center;align-items:center;text-shadow:2px 2px 10px black}
+nav{
+position:fixed;
+top:0;
+width:100%;
+background:white;
+padding:15px;
+z-index:10;
+box-shadow:0 2px 10px #00000022;
+}
+nav a{
+color:#d4af37;
+margin:0 20px;
+text-decoration:none;
+font-size:18px;
+}
+
+.hero{
+height:100vh;
+background:url('foto1.jpg') center/cover no-repeat;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-shadow:2px 2px 10px black;
+color:white;
+}
+
 .hero h1{font-size:70px;margin:0;color:#d4af37}
 .timer{margin-top:20px;font-size:28px;background:#00000080;padding:10px 20px;border-radius:10px}
 
 section{padding:90px 20px}
 
-/* FOTO 2 TELA TODA */
+/* FOTO TELA TODA */
 section img{
 width:100vw;
 height:100vh;
@@ -24,36 +55,60 @@ border-radius:0;
 margin:0;
 }
 
-/* BOTÃO BONITO */
+/* BOTAO */
 button{
-padding:12px 30px;
-background:#d4af37;
-color:#0b1d3a;
+padding:14px 30px;
+background:linear-gradient(45deg,#d4af37,#f7d774);
+color:#333;
 border:none;
 border-radius:12px;
 font-size:18px;
 margin-top:10px;
 cursor:pointer;
+box-shadow:0 0 15px #d4af37aa;
 }
-button:hover{background:#f0d060}
+button:hover{transform:scale(1.05)}
 
-/* LINHA DE LIRIOS */
+/* ===== DIVISAO LIRIOS DOURADOS ===== */
 .divisor-lirio{
-width:100%;
-height:70px;
+position:relative;
+height:80px;
+background:white;
 display:flex;
 align-items:center;
 justify-content:center;
-font-size:30px;
-background:#0b1d3a;
+overflow:hidden;
 }
-.divisor-lirio::after{
-content:"🤍 🤍 🤍 🤍 🤍 🤍 🤍 🤍 🤍 🤍";
+
+/* lirios dourados */
+.divisor-lirio span{
+font-size:28px;
+color:#d4af37;
+animation:brilho 3s infinite alternate;
 letter-spacing:15px;
 }
 
-.lirio{position:fixed;top:-40px;font-size:24px;animation:fall linear infinite}
-@keyframes fall{to{transform:translateY(110vh) rotate(360deg)}}
+/* corações caindo só aqui */
+.divisor-lirio::before{
+content:"💛 💛 💛 💛 💛 💛 💛";
+position:absolute;
+top:-40px;
+left:0;
+width:100%;
+animation:cair 6s linear infinite;
+opacity:0.6;
+}
+
+/* animações */
+@keyframes brilho{
+0%{opacity:0.5;text-shadow:0 0 5px #d4af37}
+100%{opacity:1;text-shadow:0 0 20px #d4af37}
+}
+
+@keyframes cair{
+0%{transform:translateY(-40px)}
+100%{transform:translateY(120px)}
+}
 
 html{scroll-behavior:smooth;}
 </style>
@@ -79,17 +134,6 @@ var numero='5511978067352';
 var msg='Olá, eu '+nome+' confirmo presença no casamento do Ythalo & Júlia 💍';
 window.open('https://wa.me/'+numero+'?text='+encodeURIComponent(msg));
 }
-
-function lirios(){
-for(let i=0;i<30;i++){
-let l=document.createElement('div');
-l.className='lirio';
-l.innerHTML='🤍';
-l.style.left=Math.random()*100+'vw';
-l.style.animationDuration=(8+Math.random()*6)+'s';
-document.body.appendChild(l)
-}}
-window.onload=lirios;
 </script>
 </head>
 
@@ -107,7 +151,7 @@ window.onload=lirios;
 <div id="timer" class="timer"></div>
 </section>
 
-<div class="divisor-lirio"></div>
+<div class="divisor-lirio"><span>🤍 🤍 🤍 🤍 🤍 🤍 🤍 🤍</span></div>
 
 <section>
 <h2 style="color:#d4af37">Nossa História</h2>
@@ -115,7 +159,7 @@ window.onload=lirios;
 <img src="foto2.jpg">
 </section>
 
-<div class="divisor-lirio"></div>
+<div class="divisor-lirio"><span>🤍 🤍 🤍 🤍 🤍 🤍 🤍 🤍</span></div>
 
 <section id="confirmar">
 <h2 style="color:#d4af37">Confirmar Presença 💍</h2>
@@ -125,9 +169,9 @@ window.onload=lirios;
 <button onclick="confirmar()">Confirmar Presença</button>
 </section>
 
-<div class="divisor-lirio"></div>
+<div class="divisor-lirio"><span>🤍 🤍 🤍 🤍 🤍 🤍 🤍 🤍</span></div>
 
-<section id="mapa" style="background:#061022">
+<section id="mapa">
 <h2 style="color:#d4af37">Local</h2>
 <iframe src="https://www.google.com/maps?q=Mosteiro+de+São+Bento+São+Paulo&output=embed"
 width="90%" height="350" style="border:0;border-radius:20px"></iframe>
