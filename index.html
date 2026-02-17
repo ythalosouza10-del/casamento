@@ -1,226 +1,160 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<title>Casamento Ythalo & Júlia</title>
+<title>Convite de Casamento</title>
 
 <style>
-
 body{
-margin:0;
-font-family:Arial;
-text-align:center;
-background:#0b2240;
-color:white;
-overflow-x:hidden;
-}
-
-nav{
-background:#081a33;
-padding:15px;
-position:sticky;
-top:0;
-}
-
-nav a{
-color:#d4af37;
-margin:15px;
-text-decoration:none;
-font-weight:bold;
-}
-
-section{padding:80px 20px;}
-
-h1,h2{color:#d4af37}
-
-button{
-padding:12px 25px;
-background:#d4af37;
-border:none;
-border-radius:8px;
-font-size:16px;
-}
-
-input{
-padding:10px;
-width:250px;
-}
-
-/* ====== LIRIOS ====== */
-.petal{
-position:fixed;
-top:-40px;
-font-size:20px;
-animation:fall linear infinite;
-z-index:1;
-}
-@keyframes fall{
-to{transform:translateY(110vh);}
-}
-
-/* ====== ENVELOPE ====== */
-.envelope{
-width:260px;
-height:180px;
-margin:40px auto;
-position:relative;
-cursor:pointer;
-perspective:1000px;
-}
-
-.env-body{
-position:absolute;
-width:100%;
-height:100%;
-background:#d4af37;
-border-radius:8px;
-}
-
-.env-top{
-position:absolute;
-width:100%;
-height:100%;
-background:#c49b2e;
-clip-path:polygon(0 0,100% 0,50% 60%);
-transform-origin:top;
-transition:1s;
-z-index:2;
-}
-
-.paper{
-position:absolute;
-width:220px;
-background:white;
-color:black;
-padding:20px;
-left:20px;
-bottom:-140px;
-border-radius:10px;
-transition:1s;
-z-index:1;
-}
-
-.envelope.open .env-top{
-transform:rotateX(180deg);
-}
-
-.envelope.open .paper{
-bottom:60px;
-}
-
-/* ====== CONTAGEM ====== */
-#contador{
-font-size:30px;
-margin-top:20px;
-color:#fff;
-}
-
-</style>
-
-<script>
-
-function criarPetalas(){
-for(let i=0;i<25;i++){
-let p=document.createElement("div");
-p.className="petal";
-p.innerHTML="🤍";
-p.style.left=Math.random()*100+"vw";
-p.style.animationDuration=(6+Math.random()*6)+"s";
-document.body.appendChild(p);
-}
-}
-
-function abrirEnvelope(el){
-el.classList.toggle("open");
-document.getElementById("musica").play();
+    margin:0;
+    background:linear-gradient(#000,#1a1a1a);
+    font-family: "Georgia", serif;
+    color:#d4af37;
+    text-align:center;
+    overflow-x:hidden;
 }
 
 /* CONTAGEM */
-function contagem(){
-let data=new Date("Aug 09 2027 18:00:00").getTime();
-setInterval(()=>{
-let agora=new Date().getTime();
-let diff=data-agora;
-
-let d=Math.floor(diff/(1000*60*60*24));
-let h=Math.floor((diff%(1000*60*60*24))/(1000*60*60));
-let m=Math.floor((diff%(1000*60*60))/(1000*60));
-let s=Math.floor((diff%(1000*60))/1000);
-
-document.getElementById("contador").innerHTML=
-d+" dias "+h+"h "+m+"m "+s+"s";
-},1000);
+#contador{
+    font-size:28px;
+    margin-top:20px;
 }
 
-/* WHATSAPP */
-function confirmar(){
-let nome=document.getElementById("nome").value;
-if(nome==""){alert("Digite seu nome ❤️");return;}
-let msg="Olá, eu "+nome+" confirmo presença no casamento do Ythalo & Júlia 💍";
-window.open("https://wa.me/5511978067352?text="+encodeURIComponent(msg));
+/* BOTAO MUSICA */
+.botao-musica{
+    margin-top:20px;
+    padding:10px 20px;
+    background:#d4af37;
+    border:none;
+    font-size:18px;
+    cursor:pointer;
 }
 
-window.onload=function(){
-criarPetalas();
-contagem();
+/* ENVELOPE */
+.envelope{
+    width:300px;
+    height:200px;
+    background:#d4af37;
+    margin:100px auto;
+    position:relative;
+    cursor:pointer;
+    perspective:800px;
 }
 
-</script>
+.tampa{
+    width:300px;
+    height:100px;
+    background:#b8962e;
+    position:absolute;
+    top:0;
+    transform-origin:top;
+    transition:1s;
+}
+
+.envelope.aberto .tampa{
+    transform:rotateX(180deg);
+}
+
+.papel{
+    width:260px;
+    height:160px;
+    background:white;
+    position:absolute;
+    top:20px;
+    left:20px;
+    color:black;
+    padding:10px;
+    transform:translateY(120px);
+    transition:1s;
+}
+
+.envelope.aberto .papel{
+    transform:translateY(-20px);
+}
+
+/* LIRIOS CAINDO */
+.lirio{
+    position:fixed;
+    top:-50px;
+    font-size:25px;
+    animation:cair linear infinite;
+}
+
+@keyframes cair{
+    to{
+        transform:translateY(110vh) rotate(360deg);
+    }
+}
+</style>
 </head>
 
 <body>
 
+<h1>💍 Convite Especial 💍</h1>
+
+<div id="contador"></div>
+
+<button class="botao-musica" onclick="tocarMusica()">▶ Tocar Música</button>
+
 <audio id="musica" loop>
-<source src="musica.mpeg" type="audio/mpeg">
+    <source src="a-thousand-years.mpeg" type="audio/mpeg">
 </audio>
 
-<nav>
-<a href="#">Início</a>
-<a href="#convite">Convite</a>
-<a href="#confirmar">Confirmar</a>
-<a href="#local">Local</a>
-</nav>
-
-<section>
-<h1>💍 Ythalo & Júlia 💍</h1>
-<p>Estamos contando os dias para viver esse momento com você ❤️</p>
-<div id="contador"></div>
-</section>
-
-<!-- CONVITE -->
-<section id="convite">
-<h2>Convite Especial 💌</h2>
-
-<div class="envelope" onclick="abrirEnvelope(this)">
-<div class="env-body"></div>
-<div class="env-top"></div>
-
-<div class="paper">
-<h3>Você está convidado 💍</h3>
-<p>
-Com alegria esperamos você<br>
-no nosso casamento ❤️<br><br>
-09 Agosto 2027 – 18h
-</p>
-</div>
+<div class="envelope" onclick="abrirEnvelope()">
+    <div class="tampa"></div>
+    <div class="papel">
+        <h2>Você está convidado!</h2>
+        <p>Nosso casamento será<br>
+        09/08/2027 às 18h</p>
+    </div>
 </div>
 
-</section>
+<script>
 
-<!-- CONFIRMAR -->
-<section id="confirmar">
-<h2>Confirme sua presença ❤️</h2>
-<input id="nome" placeholder="Digite seu nome"><br><br>
-<button onclick="confirmar()">Confirmar no WhatsApp</button>
-</section>
+/* CONTAGEM REGRESSIVA */
+var dataCasamento = new Date("August 9, 2027 18:00:00").getTime();
 
-<!-- MAPA -->
-<section id="local">
-<h2>Local 💒</h2>
-<iframe
-src="https://www.google.com/maps?q=Mosteiro+de+São+Bento+São+Paulo&output=embed"
-width="90%" height="300"
-style="bord
+setInterval(function(){
+    var agora = new Date().getTime();
+    var dist = dataCasamento - agora;
+
+    var dias = Math.floor(dist/(1000*60*60*24));
+    var horas = Math.floor((dist%(1000*60*60*24))/(1000*60*60));
+    var minutos = Math.floor((dist%(1000*60*60))/(1000*60));
+    var segundos = Math.floor((dist%(1000*60))/1000);
+
+    document.getElementById("contador").innerHTML =
+    "Faltam " + dias + " dias " +
+    horas + "h " + minutos + "m " + segundos + "s";
+},1000);
+
+/* MUSICA */
+function tocarMusica(){
+    document.getElementById("musica").play();
+}
+
+/* ENVELOPE */
+function abrirEnvelope(){
+    document.querySelector(".envelope").classList.toggle("aberto");
+}
+
+/* LIRIOS CAINDO */
+function criarLirio(){
+    let lirio = document.createElement("div");
+    lirio.className="lirio";
+    lirio.innerHTML="🌸";
+    lirio.style.left=Math.random()*100+"vw";
+    lirio.style.animationDuration=(5+Math.random()*5)+"s";
+    document.body.appendChild(lirio);
+
+    setTimeout(()=>lirio.remove(),10000);
+}
+setInterval(criarLirio,400);
+
+</script>
+
+</body>
+</html>
 
 
 
