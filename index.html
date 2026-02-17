@@ -1,184 +1,154 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
 <meta charset="UTF-8">
 <title>Casamento Ythalo & Júlia</title>
 
 <style>
+
 body{
 margin:0;
-font-family:'Georgia',serif;
-background:#ffffff;
-color:#333;
+font-family:Arial;
+background:#0b1c3a;
+color:white;
 text-align:center;
 overflow-x:hidden;
 }
 
+/* MENU */
 nav{
 position:fixed;
 top:0;
 width:100%;
-background:white;
+background:#06142b;
 padding:15px;
-z-index:10;
-box-shadow:0 2px 10px #00000022;
+z-index:1000;
 }
+
 nav a{
-color:#d4af37;
-margin:0 20px;
-text-decoration:none;
-font-size:18px;
-}
-
-.hero{
-height:100vh;
-background:url('foto1.jpg') center/cover no-repeat;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-shadow:2px 2px 10px black;
 color:white;
+margin:0 15px;
+text-decoration:none;
+font-weight:bold;
 }
 
-.hero h1{font-size:70px;margin:0;color:#d4af37}
-.timer{margin-top:20px;font-size:28px;background:#00000080;padding:10px 20px;border-radius:10px}
-
-section{padding:90px 20px}
-
-/* FOTO TELA TODA */
-section img{
-width:100vw;
-height:100vh;
-object-fit:cover;
-border-radius:0;
-margin:0;
-}
-
-/* BOTAO */
-button{
-padding:14px 30px;
-background:linear-gradient(45deg,#d4af37,#f7d774);
-color:#333;
-border:none;
-border-radius:12px;
-font-size:18px;
-margin-top:10px;
-cursor:pointer;
-box-shadow:0 0 15px #d4af37aa;
-}
-button:hover{transform:scale(1.05)}
-
-/* ===== DIVISAO LIRIOS DOURADOS ===== */
-.divisor-lirio{
+/* SEÇÕES */
+section{
+padding:120px 20px;
+border-bottom:2px solid #d4af37;
 position:relative;
-height:80px;
-background:white;
-display:flex;
-align-items:center;
-justify-content:center;
-overflow:hidden;
 }
 
-/* lirios dourados */
-.divisor-lirio span{
-font-size:28px;
+/* TÍTULOS */
+h1,h2{
 color:#d4af37;
-animation:brilho 3s infinite alternate;
-letter-spacing:15px;
 }
 
-/* corações caindo só aqui */
-.divisor-lirio::before{
-content:"💛 💛 💛 💛 💛 💛 💛";
+/* BOTÃO */
+button{
+padding:12px 25px;
+background:#d4af37;
+border:none;
+border-radius:8px;
+font-size:16px;
+cursor:pointer;
+margin-top:15px;
+}
+
+/* INPUT */
+input{
+padding:10px;
+border-radius:8px;
+border:none;
+width:250px;
+margin-top:10px;
+}
+
+/* LÍRIOS DOURADOS */
+.lirio{
 position:absolute;
-top:-40px;
-left:0;
-width:100%;
-animation:cair 6s linear infinite;
-opacity:0.6;
+font-size:24px;
+color:#d4af37;
+animation:flutuar 6s linear infinite;
+opacity:0.5;
 }
 
-/* animações */
-@keyframes brilho{
-0%{opacity:0.5;text-shadow:0 0 5px #d4af37}
-100%{opacity:1;text-shadow:0 0 20px #d4af37}
+@keyframes flutuar{
+0%{transform:translateY(0px);}
+50%{transform:translateY(-20px);}
+100%{transform:translateY(0px);}
 }
 
-@keyframes cair{
-0%{transform:translateY(-40px)}
-100%{transform:translateY(120px)}
-}
-
-html{scroll-behavior:smooth;}
 </style>
-
-<script>
-function contagem(){
-var data=new Date("Aug 09, 2027 18:00:00").getTime();
-var agora=new Date().getTime();
-var t=data-agora;
-var d=Math.floor(t/(1000*60*60*24));
-var h=Math.floor((t%(1000*60*60*24))/(1000*60*60));
-var m=Math.floor((t%(1000*60*60))/(1000*60));
-var s=Math.floor((t%(1000*60))/1000);
-if(t<0){document.getElementById('timer').innerHTML='Chegou o grande dia 💍';return}
-document.getElementById('timer').innerHTML=d+' dias '+h+'h '+m+'m '+s+'s';
-}
-setInterval(contagem,1000);
-
-function confirmar(){
-var nome=document.getElementById('nome').value;
-if(nome==''){alert('Digite seu nome');return}
-var numero='5511978067352';
-var msg='Olá, eu '+nome+' confirmo presença no casamento do Ythalo & Júlia 💍';
-window.open('https://wa.me/'+numero+'?text='+encodeURIComponent(msg));
-}
-</script>
 </head>
 
 <body>
 
 <nav>
-<a href="#">Início</a>
-<a href="#confirmar">Confirmar</a>
-<a href="#mapa">Local</a>
+<a href="#inicio">Início</a>
+<a href="#historia">Nossa História</a>
+<a href="#presenca">Confirmar Presença</a>
 </nav>
 
-<section class="hero">
-<h1>Ythalo & Júlia</h1>
-<p>Esperamos você no nosso casamento</p>
-<div id="timer" class="timer"></div>
+<!-- INICIO -->
+<section id="inicio">
+<h1>Casamento Ythalo & Júlia 💍</h1>
+<p>Estamos muito felizes em compartilhar esse momento com você</p>
+<div class="lirio" style="left:10%">✿</div>
+<div class="lirio" style="left:80%">✿</div>
 </section>
 
-<div class="divisor-lirio"><span>🤍 🤍 🤍 🤍 🤍 🤍 🤍 🤍</span></div>
+<!-- HISTORIA -->
+<section id="historia">
+<h2>Nossa História ❤️</h2>
+<p>
+Tudo começou quando nossos caminhos se cruzaram...  
+E desde então, cada momento juntos se tornou especial.
+</p>
 
-<section>
-<h2 style="color:#d4af37">Nossa História</h2>
-<p>Nosso amor nos trouxe até aqui e queremos celebrar esse momento com você.</p>
-<img src="foto2.jpg">
+<div class="lirio" style="left:20%">✿</div>
+<div class="lirio" style="left:70%">✿</div>
 </section>
 
-<div class="divisor-lirio"><span>🤍 🤍 🤍 🤍 🤍 🤍 🤍 🤍</span></div>
+<!-- CONFIRMAR PRESENÇA -->
+<section id="presenca">
+<h2>Confirmar Presença</h2>
 
-<section id="confirmar">
-<h2 style="color:#d4af37">Confirmar Presença 💍</h2>
-<p>Digite seu nome e confirme pelo WhatsApp</p>
-<input type="text" id="nome" placeholder="Seu nome">
+<p>Digite seu nome para confirmar:</p>
+
+<input type="text" id="nome" placeholder="Seu nome aqui">
+
 <br>
-<button onclick="confirmar()">Confirmar Presença</button>
+
+<button onclick="confirmar()">Confirmar no WhatsApp</button>
+
+<div class="lirio" style="left:40%">✿</div>
+<div class="lirio" style="left:60%">✿</div>
+
 </section>
 
-<div class="divisor-lirio"><span>🤍 🤍 🤍 🤍 🤍 🤍 🤍 🤍</span></div>
+<script>
+function confirmar(){
+let nome = document.getElementById("nome").value;
 
-<section id="mapa">
-<h2 style="color:#d4af37">Local</h2>
-<iframe src="https://www.google.com/maps?q=Mosteiro+de+São+Bento+São+Paulo&output=embed"
-width="90%" height="350" style="border:0;border-radius:20px"></iframe>
-</section>
+if(nome === ""){
+alert("Digite seu nome 😊");
+return;
+}
+
+let numero = "5511978067352";
+let mensagem = `Olá, eu ${nome}, confirmo presença no casamento ❤️`;
+
+let link = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
+
+window.open(link, "_blank");
+}
+</script>
 
 </body>
 </html>
+
+
 
 
 
