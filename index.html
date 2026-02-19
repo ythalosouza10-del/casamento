@@ -80,9 +80,18 @@ window.open('https://wa.me/'+numero+'?text='+encodeURIComponent(msg));
 }
 
 function presentear(){
-var chavePix='460.425.738-88';
-alert('Chave PIX: '+chavePix+'\nCopie e faça o presente no seu banco 💛');
+var codigoPix=`00020126330014BR.GOV.BCB.PIX0111460425738885204000053039865802BR5917YTHALO SOUZA LIMA6009SAO PAULO62070503***63043107`;
+document.getElementById('pixModal').style.display='flex';
+document.getElementById('pixCode').value=codigoPix;
+document.getElementById('qrPix').src='https://api.qrserver.com/v1/create-qr-code/?size=260x260&data='+encodeURIComponent(codigoPix);
 }
+function copiarPix(){
+var c=document.getElementById('pixCode');
+c.select();
+document.execCommand('copy');
+alert('Código PIX copiado 💛');
+}
+function fecharPix(){document.getElementById('pixModal').style.display='none';}
 
 function lirios(){
 for(let i=0;i<30;i++){
@@ -141,8 +150,24 @@ window.onload=lirios;
 <iframe src="https://www.google.com/maps?q=Mosteiro+de+São+Bento+São+Paulo&output=embed" width="90%" height="350" style="border:0;border-radius:20px"></iframe>
 </section>
 
+<!-- MODAL PIX -->
+<div id="pixModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#000000cc;justify-content:center;align-items:center;z-index:9999;">
+<div style="background:#061022;padding:30px;border-radius:20px;text-align:center;max-width:320px;box-shadow:0 0 25px #d4af37">
+<h2 style="color:#d4af37">Nos Presenteie 💍</h2>
+<p>Escaneie o QR Code ou copie o código PIX</p>
+<img id="qrPix" style="border-radius:15px;margin:10px 0">
+<br>
+<input id="pixCode" readonly style="width:100%;padding:10px;border-radius:10px;border:none;margin-top:10px;text-align:center">
+<br>
+<button onclick="copiarPix()" style="margin-top:10px">Copiar Código PIX</button>
+<br>
+<button onclick="fecharPix()" style="margin-top:10px;background:#999">Fechar</button>
+</div>
+</div>
 </body>
 </html>
+
+
 
 
 
