@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Casamento Ythalo & Júlia</title>
 
 <style>
@@ -56,6 +57,18 @@ box-shadow:0 0 25px #d4af37;
 
 .lirio{position:fixed;top:-40px;font-size:24px;animation:fall linear infinite}
 @keyframes fall{to{transform:translateY(110vh) rotate(360deg)}}
+
+/* RESPONSIVO CELULAR */
+@media (max-width:768px){
+.hero h1{font-size:38px}
+.timer{font-size:18px}
+section{padding:60px 15px}
+nav{padding:10px}
+nav a{display:block;margin:8px 0;font-size:16px}
+.foto-cheia{height:60vh}
+iframe{width:100% !important;height:300px}
+#pixModal div{width:90% !important}
+}
 </style>
 
 <script>
@@ -83,7 +96,8 @@ function presentear(){
 var codigoPix=`00020126330014BR.GOV.BCB.PIX0111460425738885204000053039865802BR5917YTHALO SOUZA LIMA6009SAO PAULO62070503***63043107`;
 document.getElementById('pixModal').style.display='flex';
 document.getElementById('pixCode').value=codigoPix;
-document.getElementById('qrPix').src='https://api.qrserver.com/v1/create-qr-code/?size=260x260&data='+encodeURIComponent(codigoPix);
+// GERAR QR CODE (Google Charts)
+document.getElementById('qrPix').src='https://chart.googleapis.com/chart?chs=260x260&cht=qr&chl='+encodeURIComponent(codigoPix);
 }
 function copiarPix(){
 var c=document.getElementById('pixCode');
@@ -166,6 +180,8 @@ window.onload=lirios;
 </div>
 </body>
 </html>
+
+
 
 
 
