@@ -17,7 +17,6 @@ html{scroll-behavior:smooth;}
 
 section{padding:90px 20px}
 
-/* FOTO 2 TELA TODA */
 .foto-cheia{
 width:100vw;
 height:100vh;
@@ -27,7 +26,6 @@ margin:0;
 display:block;
 }
 
-/* CONFIRMAR PRESENÇA BONITO */
 #confirmar input{
 padding:12px;
 font-size:16px;
@@ -38,7 +36,7 @@ margin-top:10px;
 text-align:center;
 }
 
-#confirmar button{
+#confirmar button, #pix button{
 padding:14px 30px;
 background:linear-gradient(45deg,#d4af37,#f7d774);
 color:#061022;
@@ -51,7 +49,7 @@ box-shadow:0 0 15px #d4af37aa;
 transition:0.3s;
 }
 
-#confirmar button:hover{
+#confirmar button:hover, #pix button:hover{
 transform:scale(1.05);
 box-shadow:0 0 25px #d4af37;
 }
@@ -61,7 +59,6 @@ box-shadow:0 0 25px #d4af37;
 </style>
 
 <script>
-// CONTAGEM
 function contagem(){
 var data=new Date("Aug 09, 2027 18:00:00").getTime();
 var agora=new Date().getTime();
@@ -74,7 +71,6 @@ if(t<0){document.getElementById('timer').innerHTML='Chegou o grande dia 💍';re
 document.getElementById('timer').innerHTML=d+' dias '+h+'h '+m+'m '+s+'s';}
 setInterval(contagem,1000);
 
-// WHATS
 function confirmar(){
 var nome=document.getElementById('nome').value;
 if(nome==''){alert('Digite seu nome');return}
@@ -83,7 +79,11 @@ var msg='Olá, eu '+nome+' confirmo presença no casamento do Ythalo & Júlia �
 window.open('https://wa.me/'+numero+'?text='+encodeURIComponent(msg));
 }
 
-// LIRIOS
+function presentear(){
+var chavePix='460.425.738-88';
+alert('Chave PIX: '+chavePix+'\nCopie e faça o presente no seu banco 💛');
+}
+
 function lirios(){
 for(let i=0;i<30;i++){
 let l=document.createElement('div');
@@ -120,16 +120,20 @@ window.onload=lirios;
 <p>Nosso amor nos trouxe até aqui e queremos celebrar esse momento com você.</p>
 </section>
 
-<!-- FOTO TELA TODA -->
 <img src="foto2.jpg" class="foto-cheia">
 
 <section id="confirmar">
 <h2 style="color:#d4af37">Confirmar Presença 💍</h2>
 <p>Digite seu nome e confirme pelo WhatsApp</p>
-
 <input type="text" id="nome" placeholder="Seu nome">
 <br>
 <button onclick="confirmar()">Confirmar Presença</button>
+</section>
+
+<section id="pix">
+<h2 style="color:#d4af37">Nos Presenteie 💍</h2>
+<p>Faça esse momento único ser ainda mais especial, nos presenteando ❤️</p>
+<button onclick="presentear()">Presentear</button>
 </section>
 
 <section id="mapa" style="background:#061022">
@@ -139,6 +143,8 @@ window.onload=lirios;
 
 </body>
 </html>
+
+
 
 
 
